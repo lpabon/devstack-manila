@@ -15,9 +15,10 @@
 - name: stack.sh
   shell: /home/vagrant/devstack/stack.sh 2>&1 > /home/vagrant/stack.sh.log
 
-- name: setting up demo user
-  script: setup_demo.sh
+- name: copy post_install file
+  copy: src=post_install.sh dest=/home/vagrant
 
-- name: setting up admin user
-  script: setup_admin.sh
+- name: setting up post_install
+  shell: bash post_install.sh demo
+
 
