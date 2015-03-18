@@ -14,7 +14,7 @@ if vagrant box list | grep devstack_manila ; then
     vagrant box remove devstack_manila || exit 1
 fi
 
-vagrant box add package.box devstack_manila || exit 1
+vagrant box add devstack_manila package.box || exit 1
 rm -f package.box
 
 echo "-- Done"
