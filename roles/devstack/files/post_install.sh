@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Will not find 'ip' in the path if we do not
+# setup the path correctly
+export PATH=$PATH:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/vagrant/.local/bin:/home/vagrant/bin
+
 . $HOME/devstack/openrc $@
 
 echo "Setup key pair"
