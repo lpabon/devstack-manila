@@ -1,0 +1,13 @@
+# Based on https://github.com/xiaohanyu/vagrant-ansible-devstack
+- hosts: all
+  gather_facts: False
+  vars:
+    devstack_repo: git://github.com/openstack-dev/devstack.git
+    branch: master
+    offline: no
+    reclone: no
+    git_base: git://github.com
+    image_url: http://download.cirros-cloud.net/0.3.1/cirros-0.3.1-x86_64-uec.tar.gz
+    devstack_branch: "{{branch}}"
+  roles:
+    - devstack

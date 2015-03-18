@@ -1,0 +1,68 @@
+# -*- mode: sh-*-
+# vi: set ft=sh:
+
+#### refer to http://devstack.org/localrc.html for localrc details
+
+
+## git repo clone settings
+# see http://devstack.org/guides/single-vm.html for details
+# "Setting OFFLINE=True in localrc enables stack.sh to run multiple times
+# without an Internet connection. DevStack, making hacking at the lake possible
+# since 2012!"
+OFFLINE={{offline}}
+
+# You can set a different git base url. And you can also set different git repo
+# url for various openstack project, see devstack/stackrc for details.
+GIT_BASE={{git_base}}
+
+## stack.sh logging
+LOGFILE=stack.sh.log
+
+# LOGDAYS=1
+LOG_COLOR=False
+
+## Screen logging
+SCREEN_LOGDIR=$DEST/logs/screen
+
+## A clean install every time.
+RECLONE={{reclone}}
+
+
+## basic settings
+DATABASE_PASSWORD=devstack
+RABBIT_PASSWORD=devstack
+SERVICE_PASSWORD=devstack
+ADMIN_PASSWORD=devstack
+SERVICE_TOKEN=devstack
+SWIFT_HASH=devstack
+
+## image url
+IMAGE_URL={{image_url}}
+
+disable_service horizon
+
+disable_service heat
+disable_service h-eng
+disable_service h-api
+disable_service h-api-cfn
+disable_service h-api-cw
+
+disable_service n-net
+
+enable_service q-svc
+enable_service q-agt
+enable_service q-dhcp
+enable_service q-l3
+enable_service q-meta
+enable_service neutron
+
+enable_plugin manila https://github.com/openstack/manila
+
+Q_PLUGIN=ml2
+ENABLE_TENANT_VLANS=True
+ML2_VLAN_RANGES=physnet1:100:200
+PHYSICAL_NETWORK=physnet1
+OVS_PHYSICAL_BRIDGE=br-eth1
+Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch
+Q_ML2_PLUGIN_TYPE_DRIVERS=vlan,vxlan
+

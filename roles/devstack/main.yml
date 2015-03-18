@@ -1,0 +1,23 @@
+- name: git
+  sudo: yes
+  apt: pkg=git state=present
+
+- name: update system
+  sudo: yes
+  apt: update_cache=yes upgrade=dist
+
+- name: checkout devstack
+  git: repo={{devstack_repo}} dest=/home/vagrant/devstack version={{devstack_branch}} accept_hostkey=yes
+
+- name: setup manila localrc
+  template: src=localrc.j2 dest=/home/vagrant/devstack/localrc
+
+- name: stack.sh
+  shell: /home/vagrant/devstack/stack.sh 2>&1 > /home/vagrant/stack.sh.log
+
+- name: setting up demo user
+  script: setup_demo.sh
+
+- name: setting up admin user
+  script: setup_admin.sh
+
