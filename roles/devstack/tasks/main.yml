@@ -1,10 +1,10 @@
 - name: git
   sudo: yes
-  apt: pkg=git state=present
+  yum: name=git state=present
 
 - name: update system
   sudo: yes
-  apt: update_cache=yes upgrade=dist
+  yum: name=* state=latest
 
 - name: checkout devstack
   git: repo={{devstack_repo}} dest=/home/vagrant/devstack version={{devstack_branch}} accept_hostkey=yes
