@@ -1,8 +1,7 @@
 #!/bin/sh
 
 echo "-- Create VM"
-#vagrant up || exit 1
-vagrant provision
+vagrant up || exit 1
 
 echo "-- Create Box"
 if [ -f package.box ] ; then

@@ -22,7 +22,7 @@
   shell: bash post_install.sh demo
 
 - name: set ssh vagrant key
-  command: curl https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub >> authorized_keys chdir=/home/vagrant/.ssh
+  shell: curl https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub >> authorized_keys chdir=/home/vagrant/.ssh
 
 - name: shutdown
   command: sudo poweroff
