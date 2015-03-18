@@ -2,6 +2,7 @@
 
 echo "-- Create VM"
 vagrant up || exit 1
+sleep 10
 
 echo "-- Create Box"
 if [ -f package.box ] ; then
