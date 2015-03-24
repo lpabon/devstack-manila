@@ -1,11 +1,22 @@
 # Devstack Manila
-This creates a vagrant box for OpenStack Manila
-development.
+This creates a vagrant box for OpenStack Manila development.
 
 Run:
 
 ```
-$ ./create_box.sh
+$ vagrant up
 ```
 
-It will setup a vagrant box with Devstack an Manila and add it to your local list of vagrant boxes using the name `devstack_manila`.
+It will setup a vagrant box with Devstack and Manila.
+
+## Restarting after reboot
+I have found that using `rejoin_stack.sh` does not
+work well.  Instead, the following has always worked
+after a reboot:
+
+```
+$ cd devstack
+$ ./unstack.sh
+$ ./stack.sh
+$ bash ~/post_install.sh
+```

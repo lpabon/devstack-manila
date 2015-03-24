@@ -1,6 +1,4 @@
-#!/bin/sh
-
-. $HOME/devstack/openrc $@
+. $HOME/devstack/openrc demo
 
 echo "Setup key pair"
 nova keypair-add --pub-key ~/.ssh/id_rsa.pub mykey || exit 1

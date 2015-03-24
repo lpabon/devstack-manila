@@ -13,16 +13,13 @@
   template: src=localrc.j2 dest=/home/vagrant/devstack/localrc
 
 - name: stack.sh
-  shell: /home/vagrant/devstack/stack.sh 2>&1 > /home/vagrant/stack.sh.log
+  shell: /home/vagrant/devstack/stack.sh 2>&1 > /home/vagrant/stacklog
 
 - name: copy post_install file
   copy: src=post_install.sh dest=/home/vagrant
 
 - name: setting up post_install
-  shell: bash post_install.sh demo
+  shell: bash post_install.sh
 
-- name: set ssh vagrant key
-  shell: curl https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub >> authorized_keys chdir=/home/vagrant/.ssh
-
-- name: shutdown
-  command: sudo poweroff
+- name: set localrc to offline
+  lineinfile: dest=/home/vagrant/devstack/localrc regexp="^OFFLINE=" line="OFFLINE=True"
