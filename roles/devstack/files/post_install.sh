@@ -4,7 +4,7 @@ fail() {
   exit 1
 }
 
-. $HOME/devstack/openrc demo
+. $HOME/devstack/openrc demo demo
 
 echo "Setup key pair"
 nova keypair-add --pub-key ~/.ssh/id_rsa.pub mykey || exit 1
