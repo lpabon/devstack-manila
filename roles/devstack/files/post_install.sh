@@ -20,7 +20,7 @@ sleep 5
 
 echo "Create manila share network"
 netid=`neutron net-list | grep -i private | awk '{print $2}'`
-subnetid=`neutron subnet-list | grep -i private | awk '{print $2}'`
+subnetid=`neutron subnet-list | grep -v ipv6 | grep -i private | awk '{print $2}'`
 manila share-network-create --neutron-net-id $netid \
  	--neutron-subnet-id $subnetid \
 	--name share_network_for_10xxx \
@@ -48,7 +48,7 @@ while [ $loop -eq 1 ] ; do
 done
 
 echo "Allow access"
-vmip=`nova list | grep private | awk '{print $12}' | cut -d= -f2`
+vmip=`nova list | grep private | awk '{print $13}'`
 shareid=`manila list | grep available | awk '{print $2}'`
 share=`manila list | grep available | awk '{print $16}'`
 manila access-allow $shareid ip $vmip
