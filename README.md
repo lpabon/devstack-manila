@@ -5,6 +5,9 @@ Run:
 
 ```
 $ vagrant up
+$ vagrant ssh
+$ source devstack/openrc demo demo
+$ manila list
 ```
 
 It will setup a vagrant box with Devstack and Manila.
